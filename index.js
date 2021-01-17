@@ -2,12 +2,22 @@ let noOfDrumButtons = document.querySelectorAll(".drum").length
 for (let i = 0; i < noOfDrumButtons; i++) {
     document.querySelectorAll(".drum")[i].addEventListener("click", function () {
         getPressedKey(this.innerHTML);
+        buttonAnimation(this.innerHTML);
     })
 }
 
 document.addEventListener("keydown", function (event) {
     getPressedKey(event.key);
+    buttonAnimation(event.key);
 })
+
+function buttonAnimation(currentKey) {
+    let activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");
+    setTimeout(function () {
+        activeButton.classList.remove("pressed")
+    }, 100);
+}
 
 function getPressedKey(key) {
     switch (key) {
